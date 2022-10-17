@@ -4,6 +4,7 @@ import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.model.User;
 import ru.javawebinar.topjava.repository.MealRepository;
 import ru.javawebinar.topjava.util.MealsUtil;
+import ru.javawebinar.topjava.web.SecurityUtil;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -16,7 +17,7 @@ public class InMemoryMealRepository implements MealRepository {
     private final AtomicInteger counter = new AtomicInteger(0);
 
     {
-        MealsUtil.meals.forEach(meal -> save(meal, InMemoryUserRepository.USER_ID));
+        MealsUtil.meals.forEach(meal -> save(meal, SecurityUtil.authUserId()));
     }
 
     @Override
@@ -54,7 +55,7 @@ public class InMemoryMealRepository implements MealRepository {
 
     @Override
     public Collection<Meal> getAll(int userId) {
-        if(repository.get(userId) != null) {
+        if (repository.get(userId) != null) {
             return repository.get(userId).values();
         }
         return null;
