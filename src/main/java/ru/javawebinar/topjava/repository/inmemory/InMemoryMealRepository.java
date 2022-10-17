@@ -7,6 +7,7 @@ import ru.javawebinar.topjava.repository.MealRepository;
 import ru.javawebinar.topjava.util.MealsUtil;
 import ru.javawebinar.topjava.web.SecurityUtil;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -60,7 +61,7 @@ public class InMemoryMealRepository implements MealRepository {
         if (repository.get(userId) != null) {
             return repository.get(userId).values();
         }
-        return null;
+        return new ArrayList<>();
     }
 }
 
