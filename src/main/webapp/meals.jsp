@@ -14,6 +14,13 @@
         .excess {
             color: red;
         }
+
+        dt {
+            font-weight: bold;
+        }
+        div {
+            border: 1px solid black;
+        }
     </style>
 </head>
 <body>
@@ -21,6 +28,26 @@
     <h3><a href="index.html">Home</a></h3>
     <hr/>
     <h2>Meals</h2>
+    <div>
+        <form method="get" action="meals">
+            <input type='hidden' name='action' value="filter"/>
+            <dt>From date(include)</dt>
+            <input type="date" name="startDate" value="${param.startDate}"/>
+
+            <dt>To date(include)</dt>
+            <input type="date" name="endDate" value="${param.endDate}"/>
+
+            <dt>From time(include)</dt>
+            <input type="time" name="startTime" value="${param.startTime}"/>
+
+            <dt>To time(include)</dt>
+            <input type="time" name="endTime" value="${param.endTime}"/>
+
+            <button onclick="window.history.back()" type="button">Cancel</button>
+            <button type="submit">Filter</button>
+        </form>
+    </div>
+
     <a href="meals?action=create">Add Meal</a>
     <br><br>
     <table border="1" cellpadding="8" cellspacing="0">
