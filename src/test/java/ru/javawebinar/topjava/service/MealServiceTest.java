@@ -22,7 +22,6 @@ import static org.junit.Assert.assertThrows;
 import static ru.javawebinar.topjava.MealTestData.*;
 import static ru.javawebinar.topjava.UserTestData.*;
 
-
 @ContextConfiguration({
         "classpath:spring/spring-app.xml",
         "classpath:spring/spring-db.xml"
@@ -39,7 +38,6 @@ public class MealServiceTest {
 
     @Autowired
     private MealService service;
-
 
     @Test
     public void get() {
@@ -70,9 +68,11 @@ public class MealServiceTest {
 
     @Test
     public void getBetweenInclusive() {
-        List<Meal> meals = service.getBetweenInclusive(LocalDate.from(LocalDateTime.of(2022, Month.OCTOBER, 5, 18, 2, 19)),
-                LocalDate.from(LocalDateTime.of(2022, Month.OCTOBER, 15, 17, 55, 36)), ADMIN_ID);
-        MealTestData.assertMatch(meals, adminMeal1, adminMeal2, adminMeal3);
+        LocalDate startDate = LocalDate.of(2022, Month.OCTOBER, 20);
+        LocalDate endDate = LocalDate.of(2022, Month.OCTOBER, 22);
+
+        List<Meal> meals = service.getBetweenInclusive(startDate, endDate, USER_ID);
+        MealTestData.assertMatch(meals, userMeal1, userMeal2);
     }
 
     @Test
@@ -90,7 +90,7 @@ public class MealServiceTest {
 
     @Test
     public void updateAlienMeal() {
-        assertThrows(NotFoundException.class, () -> service.update(userMeal1, ADMIN_ID));
+        assertThrows(NotFoundException.class, () -> service.update(adminMeal1, USER_ID));
     }
 
     @Test
@@ -105,7 +105,8 @@ public class MealServiceTest {
 
     @Test
     public void duplicateDateTimeCreate() {
+        LocalDateTime dateTime = LocalDateTime.of(2022, Month.OCTOBER, 22, 12, 15, 32);
         assertThrows(DataAccessException.class, () ->
-                service.create(new Meal(LocalDateTime.of(2022, Month.OCTOBER, 22, 12, 15, 32), "Морковь", 230), USER_ID));
+                service.create(new Meal(dateTime, "Морковь", 230), USER_ID));
     }
 }
