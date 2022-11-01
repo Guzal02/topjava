@@ -27,11 +27,17 @@ public class JpaMealRepository implements MealRepository {
             em.persist(meal);
             return meal;
         } else {
-            return em.merge(meal);
+            Meal tempMeal = get(meal.id(), userId);
+            if (tempMeal != null) {
+                return em.merge(meal);
+            } else {
+                return null;
+            }
         }
     }
 
     @Override
+    @Transactional
     public boolean delete(int id, int userId) {
         return em.createNamedQuery(Meal.DELETE)
                 .setParameter("id", id)
@@ -48,6 +54,7 @@ public class JpaMealRepository implements MealRepository {
     @Override
     public List<Meal> getAll(int userId) {
         return em.createNamedQuery(Meal.ALL_SORTED, Meal.class)
+                .setParameter("userId", userId)
                 .getResultList();
     }
 
