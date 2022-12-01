@@ -2,6 +2,7 @@ package ru.javawebinar.topjava;
 
 import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.model.to.MealTo;
+import ru.javawebinar.topjava.web.SecurityUtil;
 
 import java.time.Month;
 import java.util.List;
@@ -13,6 +14,7 @@ import static ru.javawebinar.topjava.util.MealsUtil.getTos;
 
 public class MealTestData {
     public static final MatcherFactory.Matcher<Meal> MEAL_MATCHER = MatcherFactory.usingIgnoringFieldsComparator(Meal.class, "user");
+    public static final MatcherFactory.Matcher<MealTo> MEAL_TO_MATCHER = MatcherFactory.usingIgnoringFieldsComparator(MealTo.class, "user");
 
     public static final int NOT_FOUND = 10;
     public static final int MEAL1_ID = START_SEQ + 3;
@@ -30,7 +32,7 @@ public class MealTestData {
 
     public static final List<Meal> meals = List.of(meal7, meal6, meal5, meal4, meal3, meal2, meal1);
 
-    public static final List<MealTo> mealsTo = getTos(meals, DEFAULT_CALORIES_PER_DAY);
+    public static final List<MealTo> mealsTo = getTos(meals, SecurityUtil.authUserCaloriesPerDay());
 
     public static Meal getNew() {
         return new Meal(null, of(2020, Month.FEBRUARY, 1, 18, 0), "Созданный ужин", 300);
