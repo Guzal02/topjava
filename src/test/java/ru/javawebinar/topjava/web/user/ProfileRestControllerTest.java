@@ -45,4 +45,9 @@ class ProfileRestControllerTest extends AbstractControllerTest {
 
         USER_MATCHER.assertMatch(userService.get(USER_ID), updated);
     }
+
+    @Test
+    void getWithMeals() throws Exception {
+
+    }
 }
