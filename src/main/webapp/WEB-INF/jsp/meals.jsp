@@ -14,26 +14,26 @@
         <h3 class="text-center"><spring:message code="meal.title"/></h3>
         <div class="card border-dark">
             <div class="card-body pb-0">
-                <form id="filter" method="get" action="meals/filter" class="form-inline">
+                <form id="filterForm">
                     <div class="row">
                         <div class="col-2">
                             <label for="startDate"><spring:message code="meal.startDate"/>:</label>
-                            <input type="date" value="${param.startDate}" class="form-control" name="startDate"
+                            <input type="date" class="form-control" name="startDate"
                                    id="startDate" autocomplete="off">
                         </div>
                         <div class="col-2">
                             <label for="endDate"><spring:message code="meal.endDate"/>:</label>
-                            <input type="date" name="endDate" value="${param.endDate}" class="form-control" id="endDate"
-                                   autocomplete="off">
+                            <input type="date" class="form-control" name="endDate"
+                                   id="endDate" autocomplete="off">
                         </div>
                         <div class="offset-2 col-3">
                             <label for="startTime"><spring:message code="meal.startTime"/>:</label>
-                            <input type="time" name="startTime" value="${param.startTime}" class="form-control"
+                            <input type="time" name="startTime" class="form-control"
                                    id="startTime" autocomplete="off">
                         </div>
                         <div class="col-3">
                             <label for="endTime"><spring:message code="meal.endTime"/>:</label>
-                            <input type="time" name="endTime" value="${param.endTime}" class="form-control" id="endTime"
+                            <input type="time" name="endTime" class="form-control" id="endTime"
                                    autocomplete="off">
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                     <span class="fa fa-remove"></span>
                     <spring:message code="common.cancel"/>
                 </button>
-                <button class="btn btn-primary" onclick="updateTable()">
+                <button class="btn btn-primary" onclick="filterTable()">
                     <span class="fa fa-filter"></span>
                     <spring:message code="meal.filter"/>
                 </button>
@@ -95,8 +95,10 @@
                     <input type="hidden" id="id" name="id">
 
                     <div class="form-group">
-                        <label for="dateTime" class="col-form-label"><spring:message code="meal.dateTime"/></label>
-                        <input class="form-control" type="datetime-local" id="dateTime" name="dateTime" autocomplete="off"
+                        <label for="dateTime" class="col-form-label"><spring:message
+                                code="meal.dateTime"/></label>
+                        <input class="form-control" type="datetime-local" id="dateTime" name="dateTime"
+                               autocomplete="off"
                                placeholder="<spring:message code="meal.dateTime"/>">
                     </div>
                     <div class="form-group">
@@ -106,8 +108,10 @@
                                placeholder="<spring:message code="meal.description"/>">
                     </div>
                     <div class="form-group">
-                        <label for="calories" class="col-form-label"><spring:message code="meal.calories"/></label>
-                        <input type="number" class="form-control" id="calories" name="calories" placeholder="1000">
+                        <label for="calories" class="col-form-label"><spring:message
+                                code="meal.calories"/></label>
+                        <input type="number" class="form-control" id="calories" name="calories"
+                               placeholder="1000">
                     </div>
                 </form>
             </div>
