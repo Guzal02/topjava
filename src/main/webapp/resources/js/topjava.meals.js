@@ -17,9 +17,6 @@ function filterTable() {
         success: updateTableByData
     });
 }
-function updateTableByData(data) {
-    ctx.datatableApi.clear().rows.add(data).draw();
-}
 
 function clearFilter() {
     $("#filterForm")[0].reset();
