@@ -7,7 +7,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.javawebinar.topjava.model.Meal;
-import ru.javawebinar.topjava.model.to.MealTo;
+import ru.javawebinar.topjava.to.MealTo;
 
 import java.net.URI;
 import java.time.LocalDate;
